@@ -16,11 +16,12 @@ logging.basicConfig(
 
 
 def triangle_kind(a, b, c):
-    if a + b <= c or a + c <= b or b + c <= a:
+    eps = 1e-9
+    if a + b - c <= eps or a + c - b <= eps or b + c - a <= eps:
         return "не треугольник"
-    if a == b == c:
+    if abs(a - b) <= eps and abs(b - c) <= eps:
         return "равносторонний"
-    if a == b or b == c or a == c:
+    if abs(a - b) <= eps or abs(b - c) <= eps or abs(a - c) <= eps:
         return "равнобедренный"
     return "разносторонний"
 
